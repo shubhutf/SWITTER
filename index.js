@@ -13,6 +13,8 @@ document.addEventListener('click', function(e){
     }
     else if(e.target.id === 'tweet-btn'){
         handleTweetBtnClick()
+    }else if(e.target.dataset.trash){
+        handleTrashBtnClick(e.target.dataset.trash)
     }
 })
  
@@ -56,7 +58,7 @@ function handleTweetBtnClick(){
     if(tweetInput.value){
         tweetsData.unshift({
             handle: `@Switter`,
-            profilePic: `images\Screenshot 2025-12-14 012252.png`,
+            profilePic: `images/Screenshot 2025-12-14 012252.png`,
             likes: 0,
             retweets: 0,
             tweetText: tweetInput.value,
@@ -69,6 +71,15 @@ function handleTweetBtnClick(){
     tweetInput.value = ''
     }
 
+}
+//handle delete
+function handleTrashBtnClick(tweetId){
+    const index = tweetsData.findIndex(tweet => tweet.uuid === tweetId)
+    if(index !== -1){
+        tweetsData.splice(index, 1)
+        render()
+    }
+    render()
 }
 
 function getFeedHtml(){
@@ -133,6 +144,11 @@ function getFeedHtml(){
                     ></i>
                     ${tweet.retweets}
                 </span>
+                <span class="tweet-detail">
+                    <i class="fa-solid fa-trash-can"
+                    data-trash="${tweet.uuid}"
+                    ></i>
+                </span>
             </div>   
         </div>            
     </div>
@@ -141,6 +157,8 @@ function getFeedHtml(){
     </div>   
 </div>
 `
+
+
    })
    return feedHtml 
 }
