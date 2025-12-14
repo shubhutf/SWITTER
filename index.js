@@ -58,7 +58,7 @@ function handleTweetBtnClick(){
     if(tweetInput.value){
         tweetsData.unshift({
             handle: `@Switter`,
-            profilePic: `images/Screenshot 2025-12-14 012252.png`,
+            profilePic: `/Screenshot 2025-12-14 012252.png`,
             likes: 0,
             retweets: 0,
             tweetText: tweetInput.value,
