@@ -79,7 +79,6 @@ function handleTrashBtnClick(tweetId){
         tweetsData.splice(index, 1)
         render()
     }
-    render()
 }
 
 function getFeedHtml(){
@@ -159,11 +158,13 @@ function getFeedHtml(){
 `
 
 
+
    })
    return feedHtml 
 }
 
 function render(){
+    localStorage.setItem("tweetsData", JSON.stringify(tweetsData))
     document.getElementById('feed').innerHTML = getFeedHtml()
 }
 
